@@ -28,19 +28,24 @@ app.post('/send/', function (req, res) {
         .then((details) => {
             const account = details.account;
             // console.log("details:", details);
-            return sendMoney(account, details.params, res);
+            return sendMoney(account, details.params, res)
+                .then((output) => {
+                    console.log("Successful: ", output);
+                    res.status(200).send(output);
+                });
         }).catch((err) => {
             switch (err.name) {
                 case "ExpiredToken":
-                    res.send("Coinbase session expired");
+                    res.status(401).send("Coinbase session expired");
                     break;
 
                 case "ValidationError":
-                    res.send(err.message);
+                    res.status(400).send(err.message);
                     break;
 
                 default:
-                    res.send(err.message);
+                    res.status(400).send(err.message);
+                    break;
             }
         });
 });
@@ -83,7 +88,6 @@ function sendMoney(account, params, res) {
                 return;
             }
             resolve(tx);
-            console.log(tx);
             return;
         });
     });
