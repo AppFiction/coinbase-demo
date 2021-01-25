@@ -3,14 +3,34 @@
 
 Installation Instructions.
 
-  - Install node_modules
+  - Install node_modules (coinbase)
   - Run command "node app.js"
-  - Open your browser and visit: http://127.0.0.1:3000 
+  - Send application/json rwequest to endpoint http://127.0.0.1:3000/send
+  
+#Parameters (application/json)
+to: wallet to send money to
+amount: value to send
+currency: E.g. BTC, LTC, ETH
+accountID: Optional. Default is primary
 
-# For your information!
+# Sample request!
+URL: 127.0.0.1:3000/send
 
-  - On login screen coinbase may display a warning message concerning https. This is no problem but just because we are using localhost (http://127.0.0.1) for test. Coinbase no longer display that warning on production (When we  use https for redirect).
-  - Sending funds is working well so far. In case of any bugs please contact developer.
+Using address
+{
+  "to": "3ER3MpfV5EyzdG9WosfQycfeb4rA2B2FTM",
+  "amount": 0.01,
+  "currency": "BTC",
+  "accountID": ""
+}
+
+Using email
+{
+  "to": "example@emai.com",
+  "amount": 0.01,
+  "currency": "LTC",
+  "accountID": ""
+} 
 
 
 
