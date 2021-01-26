@@ -28,7 +28,7 @@ app.post('/send/', function (req, res) {
     getAccount(client, params, res)
         .then((details) => {
             const account = details.account;
-            console.log("getAccount:", details);
+            console.log("getAccount:", account);
             return sendMoney(account, details.params)
                 .then((output) => {
                     console.log("Successful: ", output);
@@ -60,8 +60,6 @@ function getAccount(client, params, res) {
     return new Promise((resolve, reject) => {
         client.getAccount(params.accountID, function (err, account) {
             if (err) {
-                // console.log("A1", err.name);
-                // console.log("A2", err.id);
                 reject(err);
                 return;
             } else {
@@ -87,10 +85,11 @@ function sendMoney(account, params) {
             if (err) {
                 console.log("ErrorName", err.name);
                 reject(err);
-                return;
+
+            } else {
+                resolve(tx);
+                
             }
-            resolve(tx);
-            return;
         });
     });
 }
