@@ -5,8 +5,8 @@ const app = express();
 app.use(express.json());
 
 
-const API_KEY = "oMUlw3ORcWrrs8xi";
-const API_SECRET = "taLSy4UmTcKCPXTm1r0w5uCVwBI3j95K";
+const API_KEY = "";
+const API_SECRET = "";
 const DEFAULT_ACCOUNT = "primary";
 
 const client = new Client({
