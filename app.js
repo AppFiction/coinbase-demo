@@ -5,8 +5,8 @@ const app = express();
 app.use(express.json());
 
 
-const API_KEY = "";
-const API_SECRET = "";
+const API_KEY = "oMUlw3ORcWrrs8xi";
+const API_SECRET = "taLSy4UmTcKCPXTm1r0w5uCVwBI3j95K";
 const DEFAULT_ACCOUNT = "primary";
 
 const client = new Client({
@@ -28,7 +28,7 @@ app.post('/send/', function (req, res) {
     getAccount(client, params, res)
         .then((details) => {
             const account = details.account;
-            // console.log("details:", details);
+            console.log("getAccount:", details);
             return sendMoney(account, details.params)
                 .then((output) => {
                     console.log("Successful: ", output);
@@ -77,6 +77,7 @@ function getAccount(client, params, res) {
 
 function sendMoney(account, params) {
     return new Promise((resolve, reject) => {
+        console.log("sendMoney: ", params);
         account.sendMoney({
             'to': `${params.to}`,
             'amount': `${params.amount}`,
