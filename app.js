@@ -12,6 +12,7 @@ const DEFAULT_ACCOUNT = "primary";
 const client = new Client({
     "apiKey": API_KEY,
     "apiSecret": API_SECRET,
+    "api_version": "2021-01-22",
     "strictSSL": false
 });
 
@@ -28,7 +29,7 @@ app.post('/send/', function (req, res) {
         .then((details) => {
             const account = details.account;
             // console.log("details:", details);
-            return sendMoney(account, details.params, res)
+            return sendMoney(account, details.params)
                 .then((output) => {
                     console.log("Successful: ", output);
                     res.status(200).send(output);
@@ -74,7 +75,7 @@ function getAccount(client, params, res) {
     });
 }
 
-function sendMoney(account, params, res) {
+function sendMoney(account, params) {
     return new Promise((resolve, reject) => {
         account.sendMoney({
             'to': `${params.to}`,
