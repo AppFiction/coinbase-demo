@@ -19,7 +19,7 @@ Installation Instructions.
 ```json
 {
   "to": "3ER3MpfV5EyzdG9WosfQycfeb4rA2B2FTM",
-  "amount": 0.01,
+  "amount": "0.01",
   "currency": "BTC",
   "accountID": ""
 }
@@ -28,8 +28,8 @@ Installation Instructions.
 -Using email
 ```json
 {
-  "to": "example@emai.com",
-  "amount": 0.01,
+  "to": "example@email.com",
+  "amount": "0.01",
   "currency": "LTC",
   "accountID": ""
 } 
